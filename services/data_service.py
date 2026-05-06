@@ -23,6 +23,7 @@ def load_dataset(ruta):
     return df
 
 
+
 # Esta funcion devuelve solo las columnas que son numericas y sirven para clustering
 def get_numeric_columns(df):
     # Tipos de datos que consideramos numericos
