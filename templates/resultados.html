@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Interpretacion de Resultados{% endblock %}
+{% block content %}
+<h1>Interpretacion de resultados</h1>
+<p class="text-secondary">
+    Se muestra la asignacion de cluster por cliente, distancia al centroide y estadisticas descriptivas por cluster.
+</p>
+
+<div class="card mt-3 mb-4">
+    <div class="card-body">
+        <h2 class="h5">Estadisticas descriptivas por cluster</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped align-middle">
+                <thead>
+                    <tr>
+                        {% for col in stats_columns %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in stats_rows %}
+                    <tr>
+                        {% for col in stats_columns %}
+                        <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="h5">Datos procesados y cluster asignado (muestra de 120 registros)</h2>
+        <div class="table-responsive table-results">
+            <table class="table table-hover table-sm align-middle">
+                <thead>
+                    <tr>
+                        {% for col in result_columns %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in result_rows %}
+                    <tr>
+                        {% for col in result_columns %}
+                        <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5">Analisis narrativo</h2>
+        <p>
+            Con K={{ k_value }}, los clusters revelan perfiles diferenciados en las variables {{ selected_columns | join(', ') }}.
+            Observa los promedios por cluster para identificar segmentos de alto valor, consumo medio y bajo involucramiento.
+        </p>
+    </div>
+</div>
+{% endblock %}

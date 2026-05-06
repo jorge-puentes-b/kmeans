@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Ejecucion del Modelo{% endblock %}
+{% block content %}
+<h1 class="mb-3">Ejecucion del modelo</h1>
+<p class="text-secondary">Selecciona variables numericas y el numero de clusters para entrenar K-Means.</p>
+<p class="small text-secondary">Dataset activo: <strong>{{ active_dataset }}</strong></p>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <form method="post" class="row g-4">
+            <div class="col-lg-7">
+                <label class="form-label fw-semibold">Variables para agrupamiento</label>
+                <div class="row g-2">
+                    {% for col in numeric_columns %}
+                    <div class="col-md-6">
+                        <label class="choice-box">
+                            <input
+                                type="checkbox"
+                                name="feature_columns"
+                                value="{{ col }}"
+                                {% if col in selected_columns %}checked{% endif %}
+                            >
+                            <span>
+                                <strong>{{ col }}</strong>
+                                <small>{{ descriptions.get(col, 'Variable numerica') }}</small>
+                            </span>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <label for="n_clusters" class="form-label fw-semibold">Numero de clusters (K)</label>
+                <input type="number" id="n_clusters" name="n_clusters" min="2" max="10" value="{{ k_value }}" class="form-control" required>
+                <p class="small text-secondary mt-2">
+                    Sugerencia inicial: K entre 3 y 6 para explorar segmentos de clientes con el metodo del codo.
+                </p>
+                <button type="submit" class="btn btn-primary mt-3 w-100">Entrenar y visualizar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

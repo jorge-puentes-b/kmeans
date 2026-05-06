@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Explicacion del Dataset{% endblock %}
+{% block content %}
+<h1 class="mb-3">Explicacion del dataset</h1>
+<p class="text-secondary">
+    Selecciona el archivo que quieres analizar desde la carpeta data. Soporta CSV y Excel.
+</p>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="post" action="{{ url_for('main.select_dataset') }}" class="row g-2 align-items-end">
+            <div class="col-md-8">
+                <label for="dataset_file" class="form-label fw-semibold">Dataset activo</label>
+                <select id="dataset_file" name="dataset_file" class="form-select" {% if not datasets %}disabled{% endif %}>
+                    {% for file in datasets %}
+                    <option value="{{ file }}" {% if file == active_dataset %}selected{% endif %}>{{ file }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="submit" {% if not datasets %}disabled{% endif %}>Usar este dataset</button>
+            </div>
+        </form>
+        {% if active_dataset %}
+        <p class="small text-secondary mt-2 mb-0">Archivo seleccionado: <strong>{{ active_dataset }}</strong></p>
+        {% else %}
+        <p class="small text-danger mt-2 mb-0">No hay datasets disponibles en la carpeta data.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% if summary %}
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="metric-card"><span>Registros</span><strong>{{ summary.total_rows }}</strong></div></div>
+    <div class="col-md-3"><div class="metric-card"><span>Columnas</span><strong>{{ summary.total_columns }}</strong></div></div>
+    <div class="col-md-3"><div class="metric-card"><span>NA antes</span><strong>{{ summary.missing_values_raw }}</strong></div></div>
+    <div class="col-md-3"><div class="metric-card"><span>NA despues</span><strong>{{ summary.missing_values_clean }}</strong></div></div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="h5">Variables numericas usadas para clustering</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped align-middle">
+                <thead>
+                    <tr><th>Variable</th><th>Tipo</th><th>Rango</th><th>Significado</th></tr>
+                </thead>
+                <tbody>
+                    {% for col in summary.numeric_columns %}
+                    <tr>
+                        <td>{{ col }}</td>
+                        <td>{{ summary.ranges[col].dtype }}</td>
+                        <td>{{ summary.ranges[col].min }} - {{ summary.ranges[col].max }}</td>
+                        <td>{{ summary.column_descriptions.get(col, 'Variable numerica del dataset') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5">Muestra de datos limpios</h2>
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        {% for col in columns %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in sample %}
+                    <tr>
+                        {% for col in columns %}
+                        <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

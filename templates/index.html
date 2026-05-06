@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Descripcion del Problema{% endblock %}
+{% block content %}
+<section class="hero-card">
+    <p class="eyebrow">Seccion 1</p>
+    <h1>Descripcion del problema</h1>
+    <p>
+        Esta aplicacion analiza patrones de clientes para segmentarlos en grupos homogeneos de comportamiento.
+        El objetivo es identificar perfiles de consumo y apoyar decisiones de marketing, fidelizacion y
+        personalizacion de estrategias comerciales basadas en datos.
+    </p>
+</section>
+
+<section class="grid-cards mt-4">
+    <article class="info-card">
+        <h2>Objetivo</h2>
+        <p>Aplicar K-Means para agrupar clientes segun ingreso anual, edad y puntaje de gasto.</p>
+    </article>
+    <article class="info-card">
+        <h2>Variables base</h2>
+        <p>Age, Annual Income (k$) y Spending Score (1-100), con Gender como variable contextual.</p>
+    </article>
+    <article class="info-card">
+        <h2>Resultados esperados</h2>
+        <p>Visualizar segmentos de clientes, justificar K con metodo del codo y proponer perfiles accionables.</p>
+    </article>
+</section>
+{% endblock %}

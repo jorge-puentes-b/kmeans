@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Visualizacion de Centroides{% endblock %}
+{% block content %}
+<h1>Visualizacion de centroides</h1>
+<div class="card mt-3 mb-4">
+    <div class="card-body">
+        {{ centroid_chart | safe }}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5">Tabla de centroides</h2>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        {% for col in columns %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in centroides %}
+                    <tr>
+                        {% for col in columns %}
+                        <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

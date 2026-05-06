@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Metodo del Codo{% endblock %}
+{% block content %}
+<h1>Metodo del codo</h1>
+<p class="text-secondary">La inercia disminuye al aumentar K. El punto de inflexion sugiere un K adecuado.</p>
+
+<div class="card mt-3 mb-4">
+    <div class="card-body">
+        {{ elbow_html | safe }}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5">Tabla de inercia por K</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped">
+                <thead><tr><th>K</th><th>Inercia</th></tr></thead>
+                <tbody>
+                    {% for i in range(k_values|length) %}
+                    <tr>
+                        <td>{{ k_values[i] }}</td>
+                        <td>{{ inertias[i] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

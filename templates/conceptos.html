@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Conceptos de K-Means{% endblock %}
+{% block content %}
+<h1>Conceptos de K-Means</h1>
+<div class="card mt-3">
+    <div class="card-body">
+        <p>
+            K-Means es un algoritmo de clustering no supervisado que agrupa observaciones segun similitud.
+            Parte de un numero K de clusters, inicializa centroides y repite dos pasos hasta converger:
+            asignacion de cada punto al centroide mas cercano y actualizacion de centroides como promedio
+            de los puntos de cada grupo.
+        </p>
+        <p>
+            En este proyecto se normalizan variables con StandardScaler para equilibrar escalas,
+            se fija <strong>random_state=42</strong> para reproducibilidad y se utiliza el metodo del codo
+            para justificar K evaluando la inercia intra-cluster en segmentos de clientes.
+        </p>
+        <h2 class="h5 mt-4">Ventajas</h2>
+        <ul>
+            <li>Rapido y facil de interpretar.</li>
+            <li>Escalable para conjuntos medianos y grandes.</li>
+            <li>Permite extraer perfiles representativos mediante centroides.</li>
+        </ul>
+        <h2 class="h5 mt-4">Limitaciones</h2>
+        <ul>
+            <li>Requiere elegir K previamente.</li>
+            <li>Sensible a outliers y a la escala de las variables.</li>
+            <li>Asume clusters aproximadamente esfericos.</li>
+        </ul>
+        <p class="mt-3 mb-0">
+            En Mall Customers, los clusters se interpretan como segmentos de consumo que facilitan
+            estrategias diferenciadas de ofertas, retencion y comunicacion.
+        </p>
+    </div>
+</div>
+{% endblock %}

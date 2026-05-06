@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Visualizacion de Clusters{% endblock %}
+{% block content %}
+<h1>Visualizacion de clusters</h1>
+<p class="text-secondary">
+    Variables visualizadas: <strong>{{ selected_columns[0] }}</strong> y <strong>{{ selected_columns[1] }}</strong>.
+    Configuracion actual: K={{ k_value }}.
+</p>
+<div class="card mt-3">
+    <div class="card-body">
+        {{ scatter_html | safe }}
+    </div>
+</div>
+{% endblock %}

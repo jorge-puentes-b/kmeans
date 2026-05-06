@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+    --bg: #f5f3ea;
+    --surface: #fffdf8;
+    --accent: #0b6e4f;
+    --accent-2: #e66f2c;
+    --ink: #1f2a2d;
+    --muted: #6f7a7d;
+    --ring: #99d5c1;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%, #f6dfc0 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, #d6efe2 0%, transparent 45%),
+        var(--bg);
+    color: var(--ink);
+}
+
+h1, h2, .brand {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.topbar {
+    background: color-mix(in srgb, var(--surface) 86%, #ffffff);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e9e4d8;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.nav-wrap .nav-link {
+    color: var(--ink);
+    border-radius: 999px;
+    margin-right: 0.25rem;
+}
+
+.nav-wrap .nav-link:hover,
+.nav-wrap .nav-link:focus {
+    background: #ddeee7;
+}
+
+.hero-card,
+.info-card,
+.metric-card,
+.card {
+    background: var(--surface);
+    border: 1px solid #ece5d8;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(38, 43, 40, 0.06);
+}
+
+.hero-card {
+    padding: 2rem;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-2);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.info-card {
+    padding: 1.2rem;
+}
+
+.metric-card {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.metric-card span {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.metric-card strong {
+    font-size: 1.4rem;
+}
+
+.choice-box {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.8rem;
+    border: 1px solid #e4decd;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.choice-box:hover {
+    border-color: var(--ring);
+    background: #f2faf7;
+}
+
+.choice-box input[type='checkbox'] {
+    margin-top: 0.25rem;
+    accent-color: var(--accent);
+}
+
+.choice-box small {
+    display: block;
+    color: var(--muted);
+}
+
+.btn-primary {
+    background: linear-gradient(120deg, var(--accent), #117a58);
+    border: none;
+}
+
+.table-results {
+    max-height: 420px;
+    overflow: auto;
+}
+
+.card {
+    animation: rise 320ms ease;
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-wrap {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        padding-bottom: 0.35rem;
+    }
+}
